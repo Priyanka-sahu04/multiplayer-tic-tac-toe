@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplayer Tic-Tac-Toe</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1 class="title">Tic-Tac-Toe</h1>
+        
+        <!-- Room Selection Screen -->
+        <div id="room-selection" class="room-section">
+            <div class="input-group">
+                <input type="text" id="player-name-input" placeholder="Enter your name" maxlength="20" value="">
+            </div>
+            
+            <button class="btn" onclick="createRoom()">Create New Game</button>
+            
+            <div class="input-group">
+                <input type="text" id="room-code-input" placeholder="Enter Room Code" maxlength="6">
+                <button class="btn btn-secondary" onclick="joinRoom()">Join Game</button>
+            </div>
+        </div>
+
+        <!-- Room Display -->
+        <div id="room-display" class="room-section hidden">
+            <div style="margin-bottom: 0.5rem;">Room Code:</div>
+            <div class="room-code-display">
+                <span id="room-code"></span>
+                <button class="btn copy-btn" onclick="copyRoomCode()">Copy</button>
+            </div>
+            <button class="btn btn-secondary" onclick="leaveRoom()">Leave Room</button>
+        </div>
+
+        <!-- Error Messages -->
+        <div id="error-message" class="error-message hidden"></div>
+
+        <!-- Game Status -->
+        <div id="game-status" class="game-status hidden">
+            Waiting for players...
+        </div>
+
+        <!-- Player Info -->
+        <div id="player-info" class="player-info hidden">
+            <div class="player" id="player-x">
+                <span class="player-symbol x">X</span>
+                <span class="player-name">Player 1</span>
+            </div>
+            <div class="player" id="player-o">
+                <span class="player-symbol o">O</span>
+                <span class="player-name">Player 2</span>
+            </div>
+        </div>
+
+        <!-- Game Board -->
+        <div id="game-board" class="game-board hidden"></div>
+
+        <!-- Game Controls -->
+        <div id="game-controls" class="hidden">
+            <button class="btn btn-success" onclick="resetGame()">Play Again</button>
+        </div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
