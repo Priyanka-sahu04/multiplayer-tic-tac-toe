@@ -1,7 +1,17 @@
+/* Global mobile improvements */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Prevent zoom on iOS when focusing inputs */
+@media screen and (max-width: 768px) {
+    input[type="text"] {
+        font-size: 16px; /* Prevent zoom on iOS */
+    }
 }
 
 body {
@@ -194,6 +204,10 @@ input[type="text"] {
     text-transform: uppercase;
     letter-spacing: 0.1em;
     margin-bottom: 1rem;
+    min-height: 44px; /* Touch target size */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 input[type="text"]:focus {
@@ -202,6 +216,7 @@ input[type="text"]:focus {
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
+/* Touch-friendly improvements */
 .btn {
     background: #667eea;
     color: white;
@@ -214,12 +229,20 @@ input[type="text"]:focus {
     transition: all 0.2s;
     margin: 0.25rem;
     min-width: 120px;
+    min-height: 44px; /* Apple's recommended touch target size */
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .btn:hover:not(:disabled) {
     background: #5a67d8;
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
 }
 
 .btn:disabled {
@@ -281,11 +304,19 @@ input[type="text"]:focus {
     display: flex;
     align-items: center;
     justify-content: center;
+    min-height: 44px; /* Touch target size */
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .cell:hover:not(:disabled):not(.filled) {
     background: #f7fafc;
     transform: scale(1.05);
+}
+
+.cell:active:not(:disabled):not(.filled) {
+    transform: scale(0.98);
+    background: #edf2f7;
 }
 
 .cell:disabled {
@@ -482,8 +513,181 @@ input[type="text"]:focus {
 }
 
 @media (max-width: 480px) {
+    body {
+        padding: 1rem;
+    }
+
     .container {
         padding: 1.5rem;
+        max-width: 350px;
+        width: 95%;
+        margin: 0 auto;
+    }
+
+    .title {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .room-section {
+        margin-bottom: 1.5rem;
+    }
+
+    .room-code-display {
+        flex-direction: column;
+        gap: 0.75rem;
+        font-size: 1.25rem;
+        padding: 0.75rem;
+    }
+
+    input[type="text"] {
+        padding: 0.875rem;
+        font-size: 1rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 0.875rem 1rem;
+        font-size: 1rem;
+        margin: 0.5rem 0;
+        min-width: auto;
+    }
+
+    .copy-btn {
+        width: auto;
+        padding: 0.5rem 1rem;
+        margin: 0;
+    }
+
+    .game-board {
+        max-width: 280px;
+        gap: 6px;
+        padding: 6px;
+        margin: 1.5rem auto;
+    }
+
+    .cell {
+        width: 85px;
+        height: 85px;
+        font-size: 2.2rem;
+    }
+
+    .player-info {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0.5rem;
+    }
+
+    .player {
+        flex-direction: row;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.5rem;
+        margin: 0;
+        border-radius: 8px;
+    }
+
+    .player-symbol {
+        font-size: 1.1rem;
+    }
+
+    .player-name {
+        font-size: 0.85rem;
+        text-align: center;
+    }
+
+    .game-status {
+        font-size: 1.1rem;
+        padding: 0.75rem;
+    }
+
+    .status-finished {
+        font-size: 1.2rem;
+    }
+
+    .connection-status {
+        font-size: 0.8rem;
+        padding: 0.4rem;
+    }
+
+    .error-message {
+        font-size: 0.85rem;
+        padding: 0.6rem;
+    }
+
+    /* Reduce particle size and count for mobile performance */
+    .particle {
+        width: 4px;
+        height: 4px;
+    }
+
+    /* Hide some particles on mobile for better performance */
+    .particle:nth-child(n+31) {
+        display: none;
+    }
+}
+
+/* Tablet styles */
+@media (max-width: 768px) and (min-width: 481px) {
+    .container {
+        padding: 2rem 1.5rem;
+        max-width: 450px;
+    }
+
+    .title {
+        font-size: 1.9rem;
+    }
+
+    .cell {
+        width: 75px;
+        height: 75px;
+        font-size: 2.3rem;
+    }
+
+    .game-board {
+        max-width: 260px;
+    }
+
+    .btn {
+        width: 100%;
+        margin: 0.3rem 0;
+    }
+
+    .room-code-display {
+        font-size: 1.3rem;
+    }
+
+    .player-info {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .player {
+        justify-content: center;
+        margin: 0.1rem 0;
+    }
+}
+
+/* Large mobile / small tablet landscape */
+@media (max-width: 640px) and (orientation: landscape) {
+    .container {
+        max-width: 500px;
+        padding: 1rem 2rem;
+    }
+
+    .title {
+        font-size: 1.6rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .room-section {
+        margin-bottom: 1rem;
+    }
+
+    .game-board {
+        max-width: 240px;
+        margin: 1rem auto;
     }
 
     .cell {
@@ -492,12 +696,8 @@ input[type="text"]:focus {
         font-size: 2rem;
     }
 
-    .title {
-        font-size: 1.5rem;
-    }
-
-    .room-code-display {
-        flex-direction: column;
+    .player-info {
+        flex-direction: row;
         gap: 0.5rem;
     }
 
@@ -506,8 +706,42 @@ input[type="text"]:focus {
         gap: 0.25rem;
         text-align: center;
     }
+}
 
-    .player-name {
-        font-size: 0.8rem;
+/* Very small screens */
+@media (max-width: 320px) {
+    .container {
+        padding: 1rem;
+        width: 98%;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .cell {
+        width: 70px;
+        height: 70px;
+        font-size: 2rem;
+    }
+
+    .game-board {
+        max-width: 230px;
+        gap: 4px;
+        padding: 4px;
+    }
+
+    input[type="text"] {
+        font-size: 0.9rem;
+        padding: 0.75rem;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+        padding: 0.75rem;
+    }
+
+    .room-code-display {
+        font-size: 1.1rem;
     }
 }
